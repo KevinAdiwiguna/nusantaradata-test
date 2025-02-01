@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 📌 Panduan Instalasi Website
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Build
+Build: [Nusantara Data Test](https://nusantaradata-test.vercel.app/login)
+Source Code: [Repository](https://github.com/KevinAdiwiguna/nusantaradata-test)
+
+---
+
+## 📋 Prasyarat
+Sebelum memulai instalasi, pastikan Anda telah menginstal perangkat lunak berikut:
+
+- [Node.js](https://nodejs.org/) (Minimal versi 22)
+- [Git](https://git-scm.com/)
+- [bun](https://bun.sh/docs/installation) atau [Yarn](https://yarnpkg.com/)
+
+## 📥 Clone Repository
+```sh
+git clone https://github.com/KevinAdiwiguna/nusantaradata-test.git
+cd nusantaradata-test
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📦 Instalasi Dependensi
+Gunakan salah satu package manager berikut:
+```sh
+# Menggunakan NPM
+npm install
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Menggunakan Yarn
+yarn install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Menggunakan Bun
+bun install (recommended)
+```
 
-## Learn More
+## ⚙️ Konfigurasi Environment
+Buat file `.env` berdasarkan `.env.example` dan masukan URL Backend
+```sh
+API_URL=http://***.***.***.***:****
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Menjalankan Aplikasi Secara Lokal
+```sh
+bun dev || yarn dev || npm run dev 
+```
+Aplikasi akan berjalan di `http://localhost:3000/` secara default.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📦 Build untuk Produksi
+```sh
+bun run build || npm run build || yarn run build
+bun start || npm start || yarn start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ✅ Konfigurasi Teknologi
+- Menggunakan **Next.js** sebagai framework utama.
+- **Material UI** digunakan untuk chart.
+- **Tailwind CSS** digunakan untuk styling lainnya.
+- **React Context** digunakan untuk manajemen state sidebar.
+- **Zod** digunakan untuk validasi form login.
+- **httpOnly Cookie** digunakan untuk menyimpan login user.
 
-## Deploy on Vercel
+## 🛠️ Validasi Form
+Menggunakan Zod dengan skema berikut:
+```js
+export const loginSchema = z.object({
+  email: z
+    .string()
+    .min(5, "Email harus memiliki minimal 5 karakter")
+    .max(255, "Email terlalu panjang")
+    .email("Format Email tidak valid"),
+  password: z
+    .string()
+    .min(8, "Password harus memiliki minimal 8 karakter")
+    .max(100, "Password terlalu panjang")
+    .regex(/[A-Z]/, "Password harus mengandung setidaknya satu huruf kapital")
+    .regex(/[a-z]/, "Password harus mengandung setidaknya satu huruf kecil")
+    .regex(/[0-9]/, "Password harus mengandung setidaknya satu angka")
+    .regex(/[^A-Za-z0-9]/, "Password harus mengandung setidaknya satu karakter spesial"),
+});
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📊 Visualisasi Data
+- **Menggunakan Material UI** untuk chart.
+- **Jenis chart** yang digunakan: Pie, Line, dan Bar.
+- **Data statis** dibuat sendiri dan ditaruh di file constant.
+---
+## ❓ Alasan Pemilihan Metode Visualisasi
+Material UI Charts dipilih karena:
+1. **Integrasi yang Mudah** – Mudah digunakan dalam ekosistem Next.js.
+2. **Fitur Interaktif** – Mendukung hover details untuk memberikan informasi tambahan kepada pengguna.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🚀 **KevinAdiwiguna**
